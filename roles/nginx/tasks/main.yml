@@ -1,0 +1,29 @@
+---
+# Variable setup.
+- name: Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+# Setup/install tasks
+- include_tasks: install-Ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+# Vhost configuration
+- include_tasks: vhosts.yml
+
+# Nginx setup
+- name: Copy Nginx configuration file to server
+  template:
+    src: nginx.conf.j2
+    dest: "{{ nginx_conf_file_path }}"
+    owner: root
+    group: "{{ root_group }}"
+    mode: 0644
+  notify:
+    - Reload Nginx
+
+# Start and enable Nginx
+- name: Ensure nginx is started and enabled to start at boot
+  service:
+    name: nginx
+    state: started
+    enabled: yes

@@ -1,0 +1,23 @@
+---
+# Main config
+nginx_user               : "www-data"
+nginx_error_log          : "/var/log/nginx/error.log warn"
+nginx_access_log         : "/var/log/nginx/access.log main"
+nginx_worker_processes   : "{{ ansible_processor_vcpus | default(ansible_processor_count) }}"
+nginx_worker_connections : "1024"
+nginx_multi_accept       : "off"
+nginx_sendfile           : "on"
+nginx_tcp_nopush         : "on"
+nginx_tcp_nodelay        : "on"
+nginx_keepalive_timeout  : "65"
+nginx_keepalive_requests : "100"
+
+# Vhost
+nginx_listen_port         : 80
+nginx_server_name         : "_"
+nginx_root                : "/var/www"
+nginx_index_files         : "index.html index.htm"
+nginx_vhost_error_log     : "/var/log/nginx/{{ project_name }}-{{ server_name }}-error.log"
+nginx_vhost_access_log    : "/var/log/nginx/{{ project_name }}-{{ server_name }}-access.log"
+nginx_vhosts_filename     : "{{ project_name }}-{{ server_name }}.conf"
+nginx_remove_default_vhost: true
