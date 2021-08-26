@@ -23,5 +23,6 @@ http {
     keepalive_timeout  {{ nginx_keepalive_timeout }};
     keepalive_requests {{ nginx_keepalive_requests }};
 
+    include {{ nginx_vhost_path }}/*.conf;
     include {{ nginx_conf_path }}/*.conf;
 }

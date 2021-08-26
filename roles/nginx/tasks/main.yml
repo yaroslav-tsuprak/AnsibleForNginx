@@ -1,7 +1,7 @@
 ---
 # Variable setup.
 - name: Include OS-specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: "{{ ansible_distribution }}.yml"
 
 # Setup/install tasks
 - include_tasks: install-Ubuntu.yml
@@ -18,8 +18,7 @@
     owner: root
     group: "{{ root_group }}"
     mode: 0644
-  notify:
-    - Reload Nginx
+  notify: Reload Nginx
 
 # Start and enable Nginx
 - name: Ensure nginx is started and enabled to start at boot

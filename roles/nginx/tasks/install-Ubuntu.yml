@@ -10,7 +10,6 @@
       - nginx
       - zsh
       - wget
-  state: latest
 
 - name: Start and enable Nginx if not started and not enabled
   service:
