@@ -1,0 +1,24 @@
+---
+# Variable setup
+- name: Include Sysctl variables
+  include_vars: "Sysctl.yml"
+
+# Change kernel param fs.files-max
+- name: Change sysctl param fs.files-max
+  sysctl:
+    name: fs.files-max
+    value: "{{ sysctl_fs_files_max }}"
+    ignoreerrors: true
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+# Change kernel param somaxconn
+- name: Change sysctl param net.core.somaxconn
+  sysctl:
+    name: net.core.somaxconn
+    value: "{{ net_core_somaxconn }}"
+    ignoreerrors: true
+    sysctl_set: yes
+    state: present
+    reload: yes

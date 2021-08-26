@@ -1,0 +1,3 @@
+---
+sysctl_fs_files_max: 1204000
+net_core_somaxconn : 65535

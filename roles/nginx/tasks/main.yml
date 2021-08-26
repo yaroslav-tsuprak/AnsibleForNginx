@@ -2,13 +2,22 @@
 # Variable setup
 - name: Include OS-specific variables
   include_vars: "{{ ansible_distribution }}.yml"
+  tags:
+    - install
+    - setup
 
 # Setup/install tasks
 - include_tasks: install-Ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
+  tags:
+    - install
+    - setup
 
 # Vhost configuration
 - include_tasks: vhosts.yml
+  tags:
+    - install
+    - setup
 
 # Nginx setup
 - name: Copy Nginx configuration file to server
@@ -19,9 +28,15 @@
     group: "{{ root_group }}"
     mode: 0644
   notify: Reload Nginx
+  tags:
+    - install
+    - setup
 
 # Clone git repository
 - include_tasks: git.yml
+  tags:
+    - git
+    - clone
 
 # Start and enable Nginx
 - name: Ensure nginx is started and enabled to start at boot
@@ -29,3 +44,8 @@
     name: nginx
     state: started
     enabled: yes
+
+# Sysctl configuration task
+- include_tasks: sysctl.yml
+  tags:
+    - sysctl
