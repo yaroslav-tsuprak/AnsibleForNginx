@@ -13,7 +13,7 @@
   state: latest
 
 - name: Start and enable Nginx if not started and not enabled
-  aservice:
+  service:
     name: nginx
     state: started
     enabled: yes

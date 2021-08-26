@@ -12,7 +12,7 @@ events {
 
 http {
 
-    default_type  application/octet-stream;
+    default_type  {{ nginx_default_type }};
 
     access_log  {{ nginx_access_log }};
 
