@@ -1,6 +1,6 @@
 ---
-ansible_user                 : ansible
-ansible_ssh_private_key_file : /root/.ssh/main.pem
-technology                   : simple
-project_name                 : test-task
-server_name                  : webserver
+ansible_user                 : "ansible"
+ansible_ssh_private_key_file : "/root/.ssh/main.pem"
+technology                   : "simple"
+project_name                 : "test-task"
+server_name                  : "webserver"

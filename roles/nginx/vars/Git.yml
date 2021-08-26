@@ -1,0 +1,5 @@
+---
+git_repo            : "https://github.com/yaroslav-tsuprak/AnsibleForNginxTestHtml.git"
+git_dst             : "/tmp/AnsibleForNginxTestHtml"
+git_branch_version  : "master"
+git_cloned_file_name: "index.html"

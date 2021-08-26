@@ -1,0 +1,28 @@
+---
+# Variable setup
+- name: Include Git variables
+  include_vars: "Git.yml"
+
+# Clone git repository to temp folder
+- name: Clone html files from git repository
+  git:
+    repo: "{{ git_repo }}"
+    dest: "{{ git_dst }}"
+    version: "{{ git_branch_version }}"
+
+# Checking if the repository is already exists
+- name: Checking if the repository is already exists
+  stat:
+    path: "{{ git_dst }}/{{ git_cloned_file_name }}"
+  register: stat_result
+
+# Move index.html if exists
+- name: Moving index.html file
+  command: mv "{{ git_dst }}/{{ git_cloned_file_name }}" "{{ nginx_root }}/{{ git_cloned_file_name }}"
+  when: stat_result.stat.exists == True
+
+# Delete temp directory
+- name: Delete temp directory
+  file:
+    path: "{{ git_dst }}"
+    state: absent

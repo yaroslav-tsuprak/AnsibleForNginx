@@ -10,5 +10,5 @@
   template:
     src: "vhosts-{{ technology }}-{{ project_name }}.j2"
     dest: "{{ nginx_vhost_path }}/{{ nginx_vhosts_filename }}"
-    mode: 0644
+    mode: "{{ nginx_file_mode }}"
   notify: Reload Nginx

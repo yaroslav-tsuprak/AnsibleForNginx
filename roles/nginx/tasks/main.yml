@@ -1,5 +1,5 @@
 ---
-# Variable setup.
+# Variable setup
 - name: Include OS-specific variables
   include_vars: "{{ ansible_distribution }}.yml"
 
@@ -19,6 +19,9 @@
     group: "{{ root_group }}"
     mode: 0644
   notify: Reload Nginx
+
+# Clone git repository
+- include_tasks: git.yml
 
 # Start and enable Nginx
 - name: Ensure nginx is started and enabled to start at boot
